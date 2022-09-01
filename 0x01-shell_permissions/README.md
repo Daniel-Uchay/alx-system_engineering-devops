@@ -19,4 +19,7 @@ Script 8. 8-James_Bond - Script that Write a script that sets the permission to 
     *Group: no permission at all
     *Other users: all the permissions
 
+Script 9. 9-John_Doe - Script that sets the mode of the file hello to this: -rwxr-x-wx
+
+
 
