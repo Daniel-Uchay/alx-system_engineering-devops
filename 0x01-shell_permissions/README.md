@@ -7,3 +7,6 @@ Script 2. 2-groups - Script prints all the groups the current user is part of.
 Script 3. 3-new_owner - Script that changes the owner of the file hello to the user betty.
 
 Script 4. 4-empty - Script that creates an empty file called hello.
+
+Script 5. 5-execute - Script that adds execute permission to the owner of the file hello.
+
