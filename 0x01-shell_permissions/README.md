@@ -29,4 +29,6 @@ Script 12. 12-directory_permissions - Script that creates a directory called my_
 
 Script 13. 13-change_group - Script that changes the group owner to school for the file hello.
 
+Script 14. 100-change_owner_and_group - Script that changes the owner to vincent and the group owner to staff for all the files and directories in the working directory.
+
 
