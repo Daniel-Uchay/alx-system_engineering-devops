@@ -38,5 +38,6 @@ Script 15. 101-symbolic_link_permissions - Script that changes the owner and the
 Script 16. 102-if_only - Script that changes the owner of the file hello to betty only if it is owned by the user guillaume.
     *The file hello will be in the working directory
 
+Script 17. 103-Star_Wars - Script that will play the StarWars IV episode in the terminal.
 
 
