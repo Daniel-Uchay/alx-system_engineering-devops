@@ -14,3 +14,9 @@ Script 6. 6-multiple_permissions - Script that adds execute permission to the ow
 
 Script 7. 7-everybody - Script that adds execution permission to the owner, the group owner and the other users, to the file hello
 
+Script 8. 8-James_Bond - Script that Write a script that sets the permission to the file hello as follows:
+    *Owner: no permission at all
+    *Group: no permission at all
+    *Other users: all the permissions
+
+
