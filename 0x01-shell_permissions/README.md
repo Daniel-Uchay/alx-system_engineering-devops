@@ -27,4 +27,6 @@ Script 11. 11-directories_permissions - Script that adds execute permission to a
 
 Script 12. 12-directory_permissions - Script that creates a directory called my_dir with permissions 751 in the working directory.
 
+Script 13. 13-change_group - Script that changes the group owner to school for the file hello.
+
 
