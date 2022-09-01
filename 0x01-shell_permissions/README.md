@@ -10,3 +10,5 @@ Script 4. 4-empty - Script that creates an empty file called hello.
 
 Script 5. 5-execute - Script that adds execute permission to the owner of the file hello.
 
+Script 6. 6-multiple_permissions - Script that adds execute permission to the owner and the group owner, and read permission to other users
+
