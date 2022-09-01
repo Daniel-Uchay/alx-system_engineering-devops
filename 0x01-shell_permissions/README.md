@@ -21,5 +21,6 @@ Script 8. 8-James_Bond - Script that Write a script that sets the permission to 
 
 Script 9. 9-John_Doe - Script that sets the mode of the file hello to this: -rwxr-x-wx
 
+Script 10. 10-mirror_permissions - Script that sets the mode of the file hello the same as olleh’s mode.
 
 
