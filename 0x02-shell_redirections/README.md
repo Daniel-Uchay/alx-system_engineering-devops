@@ -58,6 +58,16 @@ Script 21-reverse - Script that reverse its input.
 Script 22-users_and_homes - Script that displays all users and their home directories, sorted by users.
     *Based on the the /etc/passwd file.
 
+Script 100-empty_casks - Script that parses web servers logs in TSV format as input and displays the 11 hosts or IP addresses which did the most requests.
+    *Order by number of requests, most active host or IP at the top.
+    *You are not allowed to use grep, egrep, fgrep or rgrep.
 
+Script 101-gifs - Script that lists all the files with a .gif extension in the current directory and all its sub-directories.
 
+Script 102-acrostic - Script that decodes acrostics that use the first letter of each line.
+
+    *The ‘decoded’ message has to end with a new line.
+    *You are not allowed to use grep, egrep, fgrep or rgrep.
+
+Script 103-the_biggest_fan - Script that parses web servers logs in TSV format as input and displays the 11 hosts or IP addresses which did the most requests.
 
