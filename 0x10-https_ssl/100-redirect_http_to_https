@@ -47,7 +47,7 @@ frontend b3zaleel-alx.tech-https-frontend
         default_backend nwabueze.tech-backend
 backend nwabueze.tech-backend
         balance roundrobin
-        server 17272-web-01 52.91.121.146:80 check
-        server 17272-web-02 3.85.136.181:80 check
+        server 17272-web-01 54.236.49.152:80 check
+        server 17272-web-02 100.25.2.50:80 check
 # end of parameters
                                             
