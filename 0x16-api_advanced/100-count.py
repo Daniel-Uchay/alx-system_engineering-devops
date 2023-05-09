@@ -45,4 +45,3 @@ def count_words(subreddit, word_list, word_count={}, after=None):
     else:
         return count_words(subreddit, word_list, word_count,
                            info.get("data").get("after"))
-
