@@ -6,21 +6,10 @@ the top ten hot posts of a subreddit
 import re
 import requests
 
+
 def count_words(subreddit, word_list, after=None, counts=None):
     """
-    Recursively queries the Reddit API, parses the title of all hot articles, and prints a sorted count of given keywords.
-
-    Args:
-    subreddit (str): The name of the subreddit to search.
-    word_list (list): A list of keywords to count.
-    after (str, optional): The ID of the post to start after. Defaults to None.
-    counts (dict, optional): A dictionary to store the counts of each keyword. Defaults to None.
-
-    Returns:
-    None
-
-    Raises:
-    None
+    Recursively queries the Reddit API
     """
     if counts is None:
         counts = {}
