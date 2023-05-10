@@ -21,7 +21,7 @@ def recurse(subreddit, hot_list=[], after=None):
         return None
     try:
         rj = r.json()
-    except:
+    except Exception as e:
         return None
     if rj.get('message') == 'Not Found':
         return
