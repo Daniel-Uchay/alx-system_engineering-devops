@@ -1,72 +1,73 @@
 #!/usr/bin/python3
 """
-Function that queries the Reddit API and prints
-the top ten hot posts of a subreddit
+    Reddit API
 """
-import re
 import requests
-import sys
 
 
-def add_title(dictionary, hot_posts):
-    """ Adds item into a list """
-    if len(hot_posts) == 0:
-        return
+def recurse(subreddit, hot_list=[], after=None):
+    """ gets the number of subscribers """
+    if after is not None:
+        url = 'https://api.reddit.com/r/' +\
+              '{}/hot.json?after={}'.format(subreddit, after)
+    else:
+        url = 'https://api.reddit.com/r/{}/hot.json'.format(subreddit)
+    header = {'user-agent': 'ianscustomthing'}
 
-    title = hot_posts[0]['data']['title'].split()
-    for word in title:
-        for key in dictionary.keys():
-            c = re.compile("^{}$".format(key), re.I)
-            if c.findall(word):
-                dictionary[key] += 1
-    hot_posts.pop(0)
-    add_title(dictionary, hot_posts)
-
-
-def recurse(subreddit, dictionary, after=None):
-    """ Queries to Reddit API """
-    u_agent = 'Mozilla/5.0'
-    headers = {
-        'User-Agent': u_agent
-    }
-
-    params = {
-        'after': after
-    }
-
-    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    res = requests.get(url,
-                       headers=headers,
-                       params=params,
-                       allow_redirects=False)
-
-    if res.status_code != 200:
+    r = requests.get(url,
+                     headers=header,
+                     allow_redirects=False)
+    if r.status_code != 200:
         return None
-
-    dic = res.json()
-    hot_posts = dic['data']['children']
-    add_title(dictionary, hot_posts)
-    after = dic['data']['after']
-    if not after:
+    try:
+        rj = r.json()
+    except:
+        return None
+    if rj.get('message') == 'Not Found':
         return
-    recurse(subreddit, dictionary, after=after)
+    chldrn = rj.get('data').get('children')
+    hot_list += [chld.get('data').get('title') for chld in chldrn]
+    after = rj.get('data').get('after')
+    if after is not None:
+        return recurse(subreddit, hot_list, after)
+    else:
+        return hot_list
+
+
+def print_words(word_list, hot_list):
+    """ prints the words all pretty like """
+    cnts = {}
+    for word in word_list:
+        c = 0
+        for title in hot_list:
+            t = title.lower().split()
+            if word.lower().strip() in t:
+                c += t.count(word.lower().strip())
+            '''
+            for w in title.split():
+                if word.strip().lower() in word.strip().lower():
+                    print("{}, {}".format(word.
+                                          strip().lower(), w.strip().lower()))
+                    c = c + 1
+            '''
+        if word.lower() in cnts:
+            cnts[word.lower()] += c
+        else:
+            cnts.update({word.lower(): c})
+    '''
+    print(hot_list)
+    cnts.update({'thing': 17})'''
+    for k, v in sorted(cnts.items(), key=lambda x: (-x[1], x[0])):
+        if cnts.get(k) != 0:
+            print("{}: {}".format(k, v))
 
 
 def count_words(subreddit, word_list):
-    """ Init function """
-    dictionary = {}
-
-    for word in word_list:
-        dictionary[word] = 0
-
-    recurse(subreddit, dictionary)
-
-    l = sorted(dictionary.items(), key=lambda kv: kv[1])
-    l.reverse()
-
-    if len(l) != 0:
-        for item in l:
-            if item[1] is not 0:
-                print("{}: {}".format(item[0], item[1]))
-    else:
-        print("")
+    """ counts dem keywords """
+    hot_list = recurse(subreddit)
+    if hot_list is None:
+        return
+    f = 0
+    if f == 1:
+        count_words(subreddit, word_list)
+    print_words(word_list, hot_list)
