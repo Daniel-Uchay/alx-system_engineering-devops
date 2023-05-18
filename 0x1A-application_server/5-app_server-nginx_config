@@ -16,24 +16,31 @@
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
-        root /home/ubuntu/AirBnB_clone_v4/web_dynamic;
+
+        server_name _;
 
         location / {
-                proxy_pass http://127.0.0.1:5003/2-hbnb;
+                include proxy_params;
+                proxy_pass http://127.0.0.1:5003/2-hbnb/;
         }
-        location /airbnb-onepage/ {
+
+        location /static {
+                autoindex off;
+                alias /home/ubuntu/AirBnB_clone_v4/web_dynamic/static;
+        }
+
+        location /airbnb-onepage {
+                include proxy_params;
                 proxy_pass http://127.0.0.1:5000;
         }
 
         location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
+                include proxy_params;
                 proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
         }
 
-        location /api/ {
-                proxy_pass http://127.0.0.1:5002;
-        }
-
-        location /static/ {
+        location /api {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:5002/api;
         }
 }
-
